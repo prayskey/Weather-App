@@ -6,19 +6,31 @@
     <link rel="stylesheet" href="./src/output.css" />
     <title>Document</title>
   </head>
-  <body class="bg-blue-400">
-    <header class="flex p-1">
+  <body class="bg-gray-300">
+    <header class="flex p-3">
       <!-- Mid section of the header -->
-      <div class="mid-section  m-auto flex">
+      <div class="mid-section m-auto flex w-2/4 space-x-2">
+        <!-- Search bar -->
         <input
           type="search"
           name="search-bar"
           id="search-bar"
-          class="border-2 border-solid border-white"
+          class="w-[80%] rounded-[20px] border-2 border-solid border-gray-400 px-3 py-1.5 transition-all focus:border-gray-500 focus:outline-0"
+          placeholder="Enter name of city to Search"
         />
+
+        <button
+          class="cursor-pointer rounded-[50%] border border-gray-400 text-3xl"
+        >
+          🔍
+        </button>
       </div>
     </header>
-    <main></main>
+    <hr class="text-gray-400" />
+
+    <main>
+    
+    </main>
     <footer></footer>
   </body>
 </html>
