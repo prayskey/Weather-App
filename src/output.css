@@ -263,6 +263,9 @@
   .flex-col {
     flex-direction: column;
   }
+  .items-center {
+    align-items: center;
+  }
   .justify-between {
     justify-content: space-between;
   }
@@ -556,6 +559,11 @@
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
+    }
+  }
+  .md\:items-center {
+    @media (width >= 48rem) {
+      align-items: center;
     }
   }
   .md\:justify-normal {
