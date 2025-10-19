@@ -30,61 +30,193 @@
     </header>
     <hr class="text-gray-400" />
 
-    <main class="flex flex-col text-gray-800 md:m-10 md:flex-row">
-      <!-- Left section of main container -->
-      <div
-        class="space-y-14 bg-[rgb(230,230,230)] p-8 md:w-2/3 md:rounded-l-3xl"
-      >
-        <!-- Contains temperature and few data -->
-        <div class="space-y-14">
-          <!-- Location container (Only visible to smaller devices) -->
-          <div class="md:hidden">
-            <!-- Location picked by user or current location user resides -->
-            <div class="flex space-x-3">
-              <!-- Location icon -->
-              <div>📌</div>
+    <main class="flex items-center justify-center">
+      <div class="flex w-full flex-col text-gray-800 md:m-10 md:flex-row">
+        <!-- Left section of main container -->
+        <div
+          class="space-y-14 bg-[rgb(230,230,230)] p-8 md:w-2/3 md:rounded-l-3xl"
+        >
+          <!-- Contains temperature and few data -->
+          <div class="space-y-14">
+            <!-- Location container (Only visible to smaller devices) -->
+            <div class="md:hidden">
+              <!-- Location picked by user or current location user resides -->
+              <div class="flex space-x-3">
+                <!-- Location icon -->
+                <div>📌</div>
 
-              <!-- User Location -->
-              <div>
-                <!-- City or State -->
-                <span>Port Harcourt</span>, <span>Nigeria</span>
+                <!-- User Location -->
+                <div>
+                  <!-- City or State -->
+                  <span>Port Harcourt</span>, <span>Nigeria</span>
+                </div>
+              </div>
+
+              <hr class="mt-2 mb-2 text-gray-400" />
+            </div>
+
+            <!-- Current temperature and icons for wind speed and humidity -->
+            <div class="flex space-x-15 md:justify-center">
+              <!-- Current temperature -->
+              <div class="text-8xl font-bold md:text-[9rem]">20°C</div>
+
+              <!-- Icons for wind speed and humidity -->
+              <div class="flex">
+                <div class="my-auto flex flex-col">
+                  <div>💨 6.1 mph</div>
+                  <div>💧 90 %</div>
+                </div>
               </div>
             </div>
 
-            <hr class="mt-2 mb-2 text-gray-400" />
+            <!-- Weather state of the day(eg. Cloudy, sunny, rainy etc.) -->
+            <div class="text-center text-4xl text-gray-600 md:text-5xl">
+              Cloudy
+            </div>
           </div>
 
-          <!-- Current temperature and icons for wind speed and humidity -->
-          <div class="flex space-x-15 md:justify-center">
-            <!-- Current temperature -->
-            <div class="text-8xl font-bold md:text-[9rem]">20°C</div>
+          <hr class="mt- mb-7 text-gray-400" />
 
-            <!-- Icons for wind speed and humidity -->
+          <!-- Right section content that is only visible to smaller devices -->
+
+          <div
+            class="block bg-[rgb(227,227,227)] p-8 pt-7 md:hidden md:w-1/3 md:rounded-r-3xl"
+          >
+            <!-- Time, Greeting, feel of the weather and Settings-->
             <div class="flex">
-              <div class="my-auto flex flex-col">
-                <div>💨 6.1 mph</div>
-                <div>💧 90 %</div>
+              <!-- Time and greeting... -->
+              <div class="w-3/4 space-y-3 text-center">
+                <!-- Clock -->
+                <div class="text-4xl font-bold">
+                  <span>09:24:13</span><span>am</span>
+                </div>
+
+                <!-- Greeting -->
+                <div class="text-2xl">Good Morning</div>
+
+                <!-- Feel of the weather -->
+                <div>Feels like 19°C</div>
+              </div>
+
+              <!-- Hamburger menu for setting(Temperature and clock format) -->
+              <div class="w-1/4 pr-2">
+                <div class="text-right text-3xl">🛠️</div>
               </div>
             </div>
+
+            <!-- Extra details about the day -->
+            <div></div>
           </div>
 
-          <!-- Weather state of the day(eg. Cloudy, sunny, rainy etc.) -->
-          <div class="text-center text-4xl text-gray-600 md:text-5xl">
-            Cloudy
+          <!-- Future day weather forcast -->
+          <div class="space-y-2 space-x-3 md:flex">
+            <!-- Day 1 -->
+            <div
+              class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
+            >
+              <!-- Day -->
+              <h2 class="w-1/3 text-center font-bold md:w-full">Sunday</h2>
+              <!-- Temperature -->
+              <h1 class="w-1/3 text-center font-bold md:w-full">33°C</h1>
+              <!-- Weather condition -->
+              <h2 class="mr-3 text-gray-500">Sunny</h2>
+            </div>
+
+            <!-- Day 2 -->
+            <div
+              class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center"
+            >
+              <!-- Day -->
+              <h2 class="w-1/3 text-center font-bold md:w-full">Today</h2>
+              <!-- Temperature -->
+              <h1 class="w-1/3 text-center font-bold md:w-full">20°C</h1>
+              <!-- Weather condition -->
+              <h2 class="mr-3 text-gray-500">Cloudy</h2>
+            </div>
+
+            <!-- Day 3 -->
+            <div
+              class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
+            >
+              <!-- Day -->
+              <h2 class="w-1/3 text-center font-bold md:w-full">Tuesday</h2>
+              <!-- Temperature -->
+              <h1 class="w-1/3 text-center font-bold md:w-full">32°C</h1>
+              <!-- Weather condition -->
+              <h2 class="mr-3 text-gray-500">Sunny</h2>
+            </div>
+
+            <!-- Day 4 -->
+            <div
+              class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
+            >
+              <!-- Day -->
+              <h2 class="w-1/3 text-center font-bold md:w-full">Wednesday</h2>
+              <!-- Temperature -->
+              <h1 class="w-1/3 text-center font-bold md:w-full">12°C</h1>
+              <!-- Weather condition -->
+              <h2 class="mr-3 text-gray-500">Rainy</h2>
+            </div>
+
+            <!-- Day 5 -->
+            <div
+              class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
+            >
+              <!-- Day -->
+              <h2 class="w-1/3 text-center font-bold md:w-full">Thursday</h2>
+              <!-- Temperature -->
+              <h1 class="w-1/3 text-center font-bold md:w-full">13°C</h1>
+              <!-- Weather condition -->
+              <h2 class="mr-3 text-gray-500">Rainy</h2>
+            </div>
+
+            <!-- Day 6 -->
+            <div
+              class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
+            >
+              <!-- Day -->
+              <h2 class="w-1/3 text-center font-bold md:w-full">Friday</h2>
+              <!-- Temperature -->
+              <h1 class="w-1/3 text-center font-bold md:w-full">22°C</h1>
+              <!-- Weather condition -->
+              <h2 class="mr-3 text-gray-500">Mist</h2>
+            </div>
+
+            <!-- Day 7 -->
+            <div
+              class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
+            >
+              <!-- Day -->
+              <h2 class="w-1/3 text-center font-bold md:w-full">Saturday</h2>
+              <!-- Temperature -->
+              <h1 class="w-1/3 text-center font-bold md:w-full">19°C</h1>
+              <!-- Weather condition -->
+              <h2 class="mr-3 text-gray-500">Mist</h2>
+            </div>
           </div>
         </div>
 
-        <hr class="mt- mb-7 text-gray-400" />
-
-        <!-- Right section content that is only visible to smaller devices -->
-
+        <!-- Right section of main container -->
         <div
-          class="block bg-[rgb(227,227,227)] p-8 pt-7 md:hidden md:w-1/3 md:rounded-r-3xl"
+          class="hidden bg-[rgb(227,227,227)] p-8 pt-7 md:block md:w-1/3 md:rounded-r-3xl"
         >
+          <!-- Location picked by user or current location user resides-->
+          <div class="flex space-x-3">
+            <!-- Location icon -->
+            <div>📌</div>
+
+            <!-- User Location -->
+            <div>
+              <!-- City or State -->
+              <span>Port Harcourt</span>, <span>Nigeria</span>
+            </div>
+          </div>
+          <hr class="mt-2 mb-2 text-gray-400" />
+
           <!-- Time, Greeting, feel of the weather and Settings-->
           <div class="flex">
             <!-- Time and greeting... -->
-            <div class="mt-4.5 w-3/4 space-y-3 text-center">
+            <div class="w-3/4 space-y-3 text-center">
               <!-- Clock -->
               <div class="text-4xl font-bold">
                 <span>09:24:13</span><span>am</span>
@@ -106,136 +238,6 @@
           <!-- Extra details about the day -->
           <div></div>
         </div>
-
-        <!-- Future day weather forcast -->
-        <div class="space-y-2 space-x-3 md:flex">
-          <!-- Day 1 -->
-          <div
-            class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
-          >
-            <!-- Day -->
-            <h2 class="w-1/3 text-center font-bold md:w-full">Sunday</h2>
-            <!-- Temperature -->
-            <h1 class="w-1/3 text-center font-bold md:w-full">33°C</h1>
-            <!-- Weather condition -->
-            <h2 class="mr-3 text-gray-500">Sunny</h2>
-          </div>
-
-          <!-- Day 2 -->
-          <div
-            class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center"
-          >
-            <!-- Day -->
-            <h2 class="w-1/3 text-center font-bold md:w-full">Today</h2>
-            <!-- Temperature -->
-            <h1 class="w-1/3 text-center font-bold md:w-full">20°C</h1>
-            <!-- Weather condition -->
-            <h2 class="mr-3 text-gray-500">Cloudy</h2>
-          </div>
-
-          <!-- Day 3 -->
-          <div
-            class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
-          >
-            <!-- Day -->
-            <h2 class="w-1/3 text-center font-bold md:w-full">Tuesday</h2>
-            <!-- Temperature -->
-            <h1 class="w-1/3 text-center font-bold md:w-full">32°C</h1>
-            <!-- Weather condition -->
-            <h2 class="mr-3 text-gray-500">Sunny</h2>
-          </div>
-
-          <!-- Day 4 -->
-          <div
-            class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
-          >
-            <!-- Day -->
-            <h2 class="w-1/3 text-center font-bold md:w-full">Wednesday</h2>
-            <!-- Temperature -->
-            <h1 class="w-1/3 text-center font-bold md:w-full">12°C</h1>
-            <!-- Weather condition -->
-            <h2 class="mr-3 text-gray-500">Rainy</h2>
-          </div>
-
-          <!-- Day 5 -->
-          <div
-            class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
-          >
-            <!-- Day -->
-            <h2 class="w-1/3 text-center font-bold md:w-full">Thursday</h2>
-            <!-- Temperature -->
-            <h1 class="w-1/3 text-center font-bold md:w-full">13°C</h1>
-            <!-- Weather condition -->
-            <h2 class="mr-3 text-gray-500">Rainy</h2>
-          </div>
-
-          <!-- Day 6 -->
-          <div
-            class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
-          >
-            <!-- Day -->
-            <h2 class="w-1/3 text-center font-bold md:w-full">Friday</h2>
-            <!-- Temperature -->
-            <h1 class="w-1/3 text-center font-bold md:w-full">22°C</h1>
-            <!-- Weather condition -->
-            <h2 class="mr-3 text-gray-500">Mist</h2>
-          </div>
-
-          <!-- Day 7 -->
-          <div
-            class="flex w-full justify-between rounded-2xl border p-3 text-[20px] md:flex-col md:items-center md:border-0"
-          >
-            <!-- Day -->
-            <h2 class="w-1/3 text-center font-bold md:w-full">Saturday</h2>
-            <!-- Temperature -->
-            <h1 class="w-1/3 text-center font-bold md:w-full">19°C</h1>
-            <!-- Weather condition -->
-            <h2 class="mr-3 text-gray-500">Mist</h2>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right section of main container -->
-      <div
-        class="hidden bg-[rgb(227,227,227)] p-8 pt-7 md:block md:w-1/3 md:rounded-r-3xl"
-      >
-        <!-- Location picked by user or current location user resides-->
-        <div class="flex space-x-3">
-          <!-- Location icon -->
-          <div>📌</div>
-
-          <!-- User Location -->
-          <div>
-            <!-- City or State -->
-            <span>Port Harcourt</span>, <span>Nigeria</span>
-          </div>
-        </div>
-        <hr class="mt-2 mb-2 text-gray-400" />
-
-        <!-- Time, Greeting, feel of the weather and Settings-->
-        <div class="flex">
-          <!-- Time and greeting... -->
-          <div class="mt-4.5 w-3/4 space-y-3 text-center">
-            <!-- Clock -->
-            <div class="text-4xl font-bold">
-              <span>09:24:13</span><span>am</span>
-            </div>
-
-            <!-- Greeting -->
-            <div class="text-2xl">Good Morning</div>
-
-            <!-- Feel of the weather -->
-            <div>Feels like 19°C</div>
-          </div>
-
-          <!-- Hamburger menu for setting(Temperature and clock format) -->
-          <div class="w-1/4 pr-2">
-            <div class="text-right text-3xl">🛠️</div>
-          </div>
-        </div>
-
-        <!-- Extra details about the day -->
-        <div></div>
       </div>
     </main>
     <footer></footer>
