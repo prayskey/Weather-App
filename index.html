@@ -80,9 +80,7 @@
 
           <!-- Time and date that is only visible on smaller devices -->
 
-          <div
-            class="md:w-full"
-          >
+          <div class="md:w-full">
             <!-- Time, Greeting, feel of the weather and Settings -->
             <div class="flex md:hidden">
               <!-- Time and greeting... -->
@@ -106,16 +104,14 @@
             </div>
 
             <!-- Extra details about the day (Eg: ) -->
-            <div class="flex lg:flex-row gap-2 flex-col">
-
-
+            <div class="flex flex-col gap-2 lg:flex-row">
               <!-- Hour cards forcast-->
-              <div class="mt-5 bg-[rgb(227,227,227)] overflow-x-scroll p-8 space-x-4 flex shadow-2xl shadow-gray-400 lg:mt-0 lg:w-3/4">
-
-
+              <div
+                class="mt-5 flex space-x-4 overflow-hidden overflow-x-auto bg-[rgb(227,227,227)] p-8 shadow-2xl shadow-gray-400 lg:mt-0 lg:w-3/4"
+              >
                 <!-- Hour card -->
                 <div
-                  class="h-40 w-40 flex flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400"
+                  class="flex h-40 w-40 shrink-0 flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400 md:h-50 md:w-50"
                 >
                   <!-- Time -->
                   <div class="">1pm</div>
@@ -126,11 +122,9 @@
                   <div class="text-2xl">20°C</div>
                 </div>
 
-                
-
                 <!-- Hour card -->
                 <div
-                  class="h-40 w-40 flex flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400"
+                  class="flex h-40 w-40 shrink-0 flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400 md:h-50 md:w-50"
                 >
                   <!-- Time -->
                   <div class="">1pm</div>
@@ -141,11 +135,9 @@
                   <div class="text-2xl">20°C</div>
                 </div>
 
-                
-
                 <!-- Hour card -->
                 <div
-                  class="h-40 w-40 flex flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400"
+                  class="flex h-40 w-40 shrink-0 flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400 md:h-50 md:w-50"
                 >
                   <!-- Time -->
                   <div class="">1pm</div>
@@ -156,11 +148,9 @@
                   <div class="text-2xl">20°C</div>
                 </div>
 
-                
-
                 <!-- Hour card -->
                 <div
-                  class="h-40 w-40 flex flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400"
+                  class="flex h-40 w-40 shrink-0 flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400 md:h-50 md:w-50"
                 >
                   <!-- Time -->
                   <div class="">1pm</div>
@@ -170,19 +160,19 @@
                   <!-- Temperature -->
                   <div class="text-2xl">20°C</div>
                 </div>
-
-                
               </div>
 
               <!-- Additional weather properties e.g(Wind direction, visibility, rain probability etc) -->
-              <div class="bg-[rgb(227,227,227)] p-8 shadow-2xl shadow-gray-400 lg:w-1/4">
-                <!-- Additional Weather Details -->
-                <div class="mt-8 flex flex-col text-sm text-gray-700">
-                  <div class="flex items-center gap-2">
-                    <!-- Compass Icon -->
+              <div
+                class="flex items-center justify-center bg-[rgb(227,227,227)] p-4 py-6 text-sm text-gray-700 shadow-2xl shadow-gray-400 lg:w-1/4"
+              >
+                <!-- Main container for deeper details of the day -->
+                <div class="flex w-full flex-col space-y-4">
+                  <!-- Compass Icon SVG -->
+                  <div class="flex border-b border-gray-300 pb-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 text-gray-500"
+                      class="mr-1 h-5 w-5 text-gray-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -192,14 +182,18 @@
                       />
                       <circle cx="12" cy="12" r="9" stroke-width="1.5" />
                     </svg>
-                    <p>Wind Direction: <span class="font-medium">NE</span></p>
+
+                    <div class="flex w-4/6 lg:w-full">
+                      <p class="mr-4 w-[70%] lg:w-[55%]">Wind Direction:</p>
+                      <p class="font-medium">NE</p>
+                    </div>
                   </div>
 
-                  <div class="flex items-center gap-2">
-                    <!--  -->
+                  <!-- Visibility Icon svg -->
+                  <div class="flex border-b border-gray-300 pb-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 text-gray-500"
+                      class="mr-1 h-5 w-5 text-gray-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -208,13 +202,18 @@
                         d="M3 12h18M3 12c0-4.97 4.03-9 9-9s9 4.03 9 9-4.03 9-9 9-9-4.03-9-9Z"
                       />
                     </svg>
-                    <p>Visibility: <span class="font-medium">8 km</span></p>
+
+                    <div class="flex w-4/6 lg:w-full">
+                      <p class="mr-4 w-[70%] lg:w-[55%]">Visibility:</p>
+                      <p class="font-medium">8 km</p>
+                    </div>
                   </div>
 
-                  <div class="flex items-center gap-2">
+                  <!-- Sunrise Icon svg -->
+                  <div class="flex border-b border-gray-300 pb-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 text-yellow-500"
+                      class="mr-1 h-5 w-5 text-yellow-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -223,13 +222,18 @@
                         d="M12 2v4m0 12v4m8.485-12.485l-2.828 2.829M4.343 19.657l2.829-2.829M2 12h4m12 0h4"
                       />
                     </svg>
-                    <p>Sunrise: <span class="font-medium">6:24 AM</span></p>
+
+                    <div class="flex w-4/6 lg:w-full">
+                      <p class="mr-4 w-[70%] lg:w-[55%]">Sunrise:</p>
+                      <p class="font-medium">24:00 am</p>
+                    </div>
                   </div>
 
-                  <div class="flex items-center gap-2">
+                  <!-- Sunset Icon svg -->
+                  <div class="flex border-b border-gray-300 pb-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 text-orange-500"
+                      class="mr-1 h-5 w-5 text-orange-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -238,13 +242,18 @@
                         d="M12 2v4m0 12v4m8.485-12.485l-2.828 2.829M4.343 19.657l2.829-2.829M2 12h4m12 0h4"
                       />
                     </svg>
-                    <p>Sunset: <span class="font-medium">6:47 PM</span></p>
+
+                    <div class="flex w-4/6 lg:w-full">
+                      <p class="mr-4 w-[70%] lg:w-[55%]">Sunset:</p>
+                      <p class="font-medium">6:47 pm</p>
+                    </div>
                   </div>
 
-                  <div class="flex items-center gap-2">
+                  <!-- Precipitation Icon svg -->
+                  <div class="flex border-b border-gray-300 pb-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="h-5 w-5 text-blue-500"
+                      class="mr-1 h-5 w-5 text-blue-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -253,21 +262,16 @@
                         d="M12 2a10 10 0 0 0 0 20c5.523 0 10-4.477 10-10S17.523 2 12 2Z"
                       />
                     </svg>
-                    <p>Precipitation: <span class="font-medium">40%</span></p>
+
+                    <div class="flex w-4/6 lg:w-full">
+                      <p class="mr-4 w-[70%] lg:w-[55%]">Precipitation:</p>
+                      <p class="font-medium">40%</p>
+                    </div>
                   </div>
                 </div>
               </div>
-
-
-              
             </div>
           </div>
-
-
-
-
-
-
         </div>
 
         <!-- Right section of main container -->
