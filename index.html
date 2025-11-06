@@ -44,7 +44,23 @@
               <!-- Location picked by user or current location user resides -->
               <div class="flex space-x-3">
                 <!-- Location icon -->
-                <div>📌</div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-map-pin-icon lucide-map-pin h-6 w-6"
+                  >
+                    <path
+                      d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                    />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
 
                 <!-- User Location -->
                 <div>
@@ -99,7 +115,23 @@
 
               <!-- Hamburger menu for setting(Temperature and clock format) -->
               <div class="w-1/4 pr-2">
-                <div class="text-right text-3xl">🛠️</div>
+                <div class="flex h-[2.5rem] items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-settings-icon lucide-settings h-6 w-6 hover:cursor-pointer"
+                  >
+                    <path
+                      d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+                    />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                </div>
               </div>
             </div>
 
@@ -279,7 +311,23 @@
           <!-- Location picked by user or current location user resides-->
           <div class="hidden space-x-3 md:flex">
             <!-- Location icon -->
-            <div>📌</div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-map-pin-icon lucide-map-pin h-6 w-6"
+              >
+                <path
+                  d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
 
             <!-- User Location -->
             <div>
@@ -307,13 +355,30 @@
 
             <!-- Hamburger menu for setting(Temperature and clock format) -->
             <div class="w-1/4 pr-2">
-              <div class="text-right text-3xl">🛠️</div>
+              <div class="flex h-[2.5rem] items-center">
+                <!-- Svg for settings icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-settings-icon lucide-settings h-6 w-6 hover:cursor-pointer"
+                >
+                  <path
+                    d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+                  />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </div>
             </div>
           </div>
 
           <!-- Future day weather forcast -->
 
-          <div class="flex flex-col  space-y-3 pt-7">
+          <div class="flex flex-col space-y-3 pt-7">
             <!-- Day 1 -->
             <div
               class="flex w-full justify-between rounded-2xl border p-2 text-center text-[20px]"
@@ -402,7 +467,6 @@
       </div>
     </main>
     <footer></footer>
-
 
     <script src="/app.js"></script>
   </body>
