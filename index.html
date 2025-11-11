@@ -17,7 +17,7 @@
           type="search"
           name="search-bar"
           id="search-bar"
-          class="w-[80%] search-bar rounded-[20px] border-2 border-solid border-gray-400 px-3 py-1.5 transition-all focus:border-gray-500 focus:outline-0"
+          class="search-bar w-[80%] rounded-[20px] border-2 border-solid border-gray-400 px-3 py-1.5 transition-all focus:border-gray-500 focus:outline-0"
           placeholder="Enter name of city to Search"
         />
 
@@ -65,7 +65,7 @@
                 <!-- User Location -->
                 <div>
                   <!-- City or State -->
-                  <span>Port Harcourt</span>, <span>Nigeria</span>
+                  <span class="user_city"></span>, <span class="user_country"></span>
                 </div>
               </div>
 
@@ -75,21 +75,24 @@
             <!-- Present day current temperature and icons for wind speed and humidity -->
             <div class="flex justify-between md:justify-center lg:space-x-15">
               <!-- Current temperature -->
-              <div class="text-[5rem] font-bold md:text-[9rem] big-temperature-text">120 <span class="temp_unit">°C</span></div>
+              <div
+                class="big-temperature-text text-[5rem] font-bold md:text-[9rem]"
+              >
+              </div>
 
               <!-- Icons for wind speed and humidity -->
               <div class="flex">
                 <div class="my-auto flex flex-col">
-                  <div>💨 <span class="wind-speed-text">62.1</span>mph</div>
-                  <div>💧 <span class="humidity-text">100</span>%</div>
+                  <div>💨 <span class="wind-speed-text"></span>mph</div>
+                  <div>💧 <span class="humidity-text"></span>%</div>
                 </div>
               </div>
             </div>
 
             <!-- Weather state of the day(eg. Cloudy, sunny, rainy etc.) -->
-            <div class="text-center weather-condition-text text-4xl text-gray-600 md:text-5xl">
-              Cloudy
-            </div>
+            <div
+              class="weather-condition-text text-center text-4xl text-gray-600 md:text-5xl"
+            ></div>
           </div>
 
           <hr class="mb-7 text-gray-400" />
@@ -107,10 +110,13 @@
                 </div>
 
                 <!-- Greeting -->
-                <div class="text-2xl greetings-text">Good Morning</div>
+                <div class="greetings-text text-2xl"></div>
 
                 <!-- Feel of the weather -->
-                <div>Feels like <span class="feels-like-text">19</span><span class="unit">°C</span></div>
+                <div>
+                  Feels like <span class="feels-like-text"></span>
+                  <span class="temp_unit"></span>
+                </div>
               </div>
 
               <!-- Hamburger menu for setting(Temperature and clock format) -->
@@ -124,7 +130,7 @@
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="lucide lucide-settings-icon  lucide-settings h-6 w-6 hover:cursor-pointer"
+                    class="lucide lucide-settings-icon lucide-settings h-6 w-6 hover:cursor-pointer"
                   >
                     <path
                       d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
@@ -151,7 +157,9 @@
                   <div>Sunny</div>
                   <!-- To replace with Icons later on -->
                   <!-- Temperature -->
-                  <div class="text-2xl">20 <span class="temp_unit">°C</span></div>
+                  <div class="text-2xl">
+                    20 <span class="temp_unit">°C</span>
+                  </div>
                 </div>
 
                 <!-- Hour card -->
@@ -164,7 +172,9 @@
                   <div>Sunny</div>
                   <!-- To replace with Icons later on -->
                   <!-- Temperature -->
-                  <div class="text-2xl">20 <span class="temp_unit">°C</span></div>
+                  <div class="text-2xl">
+                    20 <span class="temp_unit">°C</span>
+                  </div>
                 </div>
 
                 <!-- Hour card -->
@@ -177,7 +187,9 @@
                   <div>Sunny</div>
                   <!-- To replace with Icons later on -->
                   <!-- Temperature -->
-                  <div class="text-2xl">20 <span class="temp_unit">°C</span></div>
+                  <div class="text-2xl">
+                    20 <span class="temp_unit">°C</span>
+                  </div>
                 </div>
 
                 <!-- Hour card -->
@@ -190,7 +202,9 @@
                   <div>Sunny</div>
                   <!-- To replace with Icons later on -->
                   <!-- Temperature -->
-                  <div class="text-2xl">20 <span class="temp_unit">°C</span></div>
+                  <div class="text-2xl">
+                    20 <span class="temp_unit">°C</span>
+                  </div>
                 </div>
               </div>
 
@@ -217,7 +231,7 @@
 
                     <div class="flex w-4/6 lg:w-full">
                       <p class="mr-4 w-[60%] lg:w-[55%]">Wind Direction:</p>
-                      <p class="font-medium wind-direction-text">NE</p>
+                      <p class="wind-direction-text font-medium"></p>
                     </div>
                   </div>
 
@@ -237,7 +251,9 @@
 
                     <div class="flex w-4/6 lg:w-full">
                       <p class="mr-4 w-[60%] lg:w-[55%]">Visibility:</p>
-                      <p class="font-medium"><span class="visibility-text">8</span>km</p>
+                      <p class="font-medium">
+                        <span class="visibility-text"></span>km
+                      </p>
                     </div>
                   </div>
 
@@ -257,7 +273,11 @@
 
                     <div class="flex w-4/6 lg:w-full">
                       <p class="mr-4 w-[60%] lg:w-[55%]">Sunrise:</p>
-                      <p class="font-medium"><span class="sunrise-text">24:00 am</span></p>
+                      <p class="font-medium">
+                        <span class="sunrise-text"
+                          ><span class="sunrise_amOrPm_text"></span
+                        ></span>
+                      </p>
                     </div>
                   </div>
 
@@ -277,7 +297,11 @@
 
                     <div class="flex w-4/6 lg:w-full">
                       <p class="mr-4 w-[60%] lg:w-[55%]">Sunset:</p>
-                      <p class="font-medium"><span class="sunset">6:47 pm</span></p>
+                      <p class="font-medium">
+                        <span class="sunset-text"
+                          ><span class="sunset_amOrPm_text"></span
+                        ></span>
+                      </p>
                     </div>
                   </div>
 
@@ -297,7 +321,9 @@
 
                     <div class="flex w-4/6 lg:w-full">
                       <p class="mr-4 w-[60%] lg:w-[55%]">Precipitation:</p>
-                      <p class="font-medium"><span class="precipitation-text">40</span>%</p>
+                      <p class="font-medium">
+                        <span class="precipitation-text"></span>%
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -320,7 +346,7 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="lucide hover:cursor-pointer active:shadow shadow-gray-400 lucide-map-pin-icon lucide-map-pin h-6 w-6"
+                class="lucide lucide-map-pin-icon lucide-map-pin h-6 w-6 shadow-gray-400 hover:cursor-pointer active:shadow"
               >
                 <path
                   d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
@@ -347,15 +373,18 @@
               </div>
 
               <!-- Greeting -->
-              <div class="text-2xl greetings-text">Good Morning</div>
+              <div class="greetings-text text-2xl"></div>
 
               <!-- Feel of the weather -->
-              <div>Feels like <span class="feels-like-text">19</span> <span class="temp_unit">°C</span></div>
+              <div>
+                Feels like <span class="feels-like-text"></span>
+                <span class="temp_unit"></span>
+              </div>
             </div>
 
             <!-- Hamburger menu for setting(Temperature and clock format) -->
             <div class="w-1/4 pr-2">
-              <div class="flex h-[2.5rem] items-center location">
+              <div class="location flex h-[2.5rem] items-center">
                 <!-- Svg for settings icon -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -386,7 +415,7 @@
               <!-- Day -->
               <h2 class="w-1/3 font-bold">Sunday</h2>
               <!-- Temperature -->
-              <h1 class="w-1/3 font-bold"> <span class="temp_unit">°C</span></h1>
+              <h1 class="w-1/3 font-bold"><span class="temp_unit">°C</span></h1>
               <!-- Weather condition -->
               <h2 class="w-1/3 text-gray-500">Sunny</h2>
             </div>
@@ -398,7 +427,9 @@
               <!-- Day -->
               <h2 class="w-1/3 font-bold">Sunday</h2>
               <!-- Temperature -->
-              <h1 class="w-1/3 font-bold">33 <span class="temp_unit">°C</span></h1>
+              <h1 class="w-1/3 font-bold">
+                33 <span class="temp_unit">°C</span>
+              </h1>
               <!-- Weather condition -->
               <h2 class="w-1/3 text-gray-500">Sunny</h2>
             </div>
@@ -410,7 +441,9 @@
               <!-- Day -->
               <h2 class="w-1/3 font-bold">Sunday</h2>
               <!-- Temperature -->
-              <h1 class="w-1/3 font-bold">33 <span class="temp_unit">°C</span></h1>
+              <h1 class="w-1/3 font-bold">
+                33 <span class="temp_unit">°C</span>
+              </h1>
               <!-- Weather condition -->
               <h2 class="w-1/3 text-gray-500">Sunny</h2>
             </div>
@@ -422,7 +455,9 @@
               <!-- Day -->
               <h2 class="w-1/3 font-bold">Sunday</h2>
               <!-- Temperature -->
-              <h1 class="w-1/3 font-bold">33 <span class="temp_unit">°C</span></h1>
+              <h1 class="w-1/3 font-bold">
+                33 <span class="temp_unit">°C</span>
+              </h1>
               <!-- Weather condition -->
               <h2 class="w-1/3 text-gray-500">Sunny</h2>
             </div>
@@ -434,7 +469,9 @@
               <!-- Day -->
               <h2 class="w-1/3 font-bold">Sunday</h2>
               <!-- Temperature -->
-              <h1 class="w-1/3 font-bold">33 <span class="temp_unit">°C</span></h1>
+              <h1 class="w-1/3 font-bold">
+                33 <span class="temp_unit">°C</span>
+              </h1>
               <!-- Weather condition -->
               <h2 class="w-1/3 text-gray-500">Sunny</h2>
             </div>
@@ -446,7 +483,9 @@
               <!-- Day -->
               <h2 class="w-1/3 font-bold">Sunday</h2>
               <!-- Temperature -->
-              <h1 class="w-1/3 font-bold">33 <span class="temp_unit">°C</span></h1>
+              <h1 class="w-1/3 font-bold">
+                33 <span class="temp_unit">°C</span>
+              </h1>
               <!-- Weather condition -->
               <h2 class="w-1/3 text-gray-500">Sunny</h2>
             </div>
@@ -458,7 +497,9 @@
               <!-- Day -->
               <h2 class="w-1/3 font-bold">Sunday</h2>
               <!-- Temperature -->
-              <h1 class="w-1/3 font-bold">33 <span class="temp_unit">°C</span></h1>
+              <h1 class="w-1/3 font-bold">
+                33 <span class="temp_unit">°C</span>
+              </h1>
               <!-- Weather condition -->
               <h2 class="w-1/3 text-gray-500">Sunny</h2>
             </div>
