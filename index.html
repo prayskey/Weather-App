@@ -22,9 +22,23 @@
         />
 
         <button
-          class="h-11 w-11 cursor-pointer rounded-[50%] border border-gray-400 text-2xl"
+          class="flex h-11 w-11 cursor-pointer items-center justify-center rounded-[50%] border border-gray-400 text-2xl"
         >
-          🔍
+          <!-- Svg for search icon -->
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-search-icon lucide-search h-6.5 w-6.5"
+          >
+            <path d="m21 21-4.34-4.34" />
+            <circle cx="11" cy="11" r="8" />
+          </svg>
         </button>
       </div>
     </header>
@@ -65,7 +79,8 @@
                 <!-- User Location -->
                 <div>
                   <!-- City or State -->
-                  <span class="user_city"></span>, <span class="user_country"></span>
+                  <span class="user_city"></span>,
+                  <span class="user_country"></span>
                 </div>
               </div>
 
@@ -73,25 +88,60 @@
             </div>
 
             <!-- Present day current temperature and icons for wind speed and humidity -->
-            <div class="flex justify-between md:justify-center lg:space-x-15">
+            <div class="flex flex-col items-center  md:flex-row justify-center lg:space-x-15">
               <!-- Current temperature -->
               <div
                 class="big-temperature-text text-[5rem] font-bold md:text-[9rem]"
-              >
-              </div>
+              ></div>
 
               <!-- Icons for wind speed and humidity -->
               <div class="flex">
-                <div class="my-auto flex flex-col">
-                  <div>💨 <span class="wind-speed-text"></span>mph</div>
-                  <div>💧 <span class="humidity-text"></span>%</div>
+                <div class="my-auto flex space-y-3 flex-col">
+                  <div class="flex">
+                    <!-- SVG for wind icon -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-wind-icon lucide-wind h-6.5 w-6.5"
+                    >
+                      <path d="M12.8 19.6A2 2 0 1 0 14 16H2" />
+                      <path d="M17.5 8a2.5 2.5 0 1 1 2 4H2" />
+                      <path d="M9.8 4.4A2 2 0 1 1 11 8H2" />
+                    </svg>
+
+                    <span class="wind-speed-text ml-2"></span>mph
+                  </div>
+                  <div class="flex">
+                    <!-- SVG for humidity icon -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-droplet-icon lucide-droplet h-6.5 w-6.5"
+                    >
+                      <path
+                        d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"
+                      />
+                    </svg>
+
+                    <span class="humidity-text ml-2"></span>%
+                  </div>
                 </div>
               </div>
             </div>
 
             <!-- Weather state of the day(eg. Cloudy, sunny, rainy etc.) -->
             <div
-              class="weather-condition-text text-center text-4xl text-gray-600 md:text-5xl"
+              class="weather-condition-text text-center text-3xl text-gray-600 md:text-4xl"
             ></div>
           </div>
 
@@ -218,18 +268,21 @@
                   <div class="flex border-b border-gray-300 pb-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="mr-1 h-5 w-5 text-gray-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-compass-icon lucide-compass h-5 w-5"
                     >
                       <path
-                        d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.364-7.364l-1.414 1.414M7.05 16.95l-1.414 1.414m0-11.314L7.05 7.05m9.9 9.9l1.414 1.414"
+                        d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"
                       />
-                      <circle cx="12" cy="12" r="9" stroke-width="1.5" />
+                      <circle cx="12" cy="12" r="10" />
                     </svg>
 
-                    <div class="flex w-4/6 lg:w-full">
+                    <div class="pl-2 flex w-4/6 lg:w-full">
                       <p class="mr-4 w-[60%] lg:w-[55%]">Wind Direction:</p>
                       <p class="wind-direction-text font-medium"></p>
                     </div>
@@ -239,17 +292,28 @@
                   <div class="flex border-b border-gray-300 pb-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="mr-1 h-5 w-5 text-gray-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-telescope-icon lucide-telescope h-5 w-5"
                     >
                       <path
-                        d="M3 12h18M3 12c0-4.97 4.03-9 9-9s9 4.03 9 9-4.03 9-9 9-9-4.03-9-9Z"
+                        d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44"
                       />
+                      <path d="m13.56 11.747 4.332-.924" />
+                      <path d="m16 21-3.105-6.21" />
+                      <path
+                        d="M16.485 5.94a2 2 0 0 1 1.455-2.425l1.09-.272a1 1 0 0 1 1.212.727l1.515 6.06a1 1 0 0 1-.727 1.213l-1.09.272a2 2 0 0 1-2.425-1.455z"
+                      />
+                      <path d="m6.158 8.633 1.114 4.456" />
+                      <path d="m8 21 3.105-6.21" />
+                      <circle cx="12" cy="13" r="2" />
                     </svg>
 
-                    <div class="flex w-4/6 lg:w-full">
+                    <div class="pl-2 flex w-4/6 lg:w-full">
                       <p class="mr-4 w-[60%] lg:w-[55%]">Visibility:</p>
                       <p class="font-medium">
                         <span class="visibility-text"></span>km
@@ -261,17 +325,25 @@
                   <div class="flex border-b border-gray-300 pb-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="mr-1 h-5 w-5 text-yellow-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-sunrise-icon lucide-sunrise h-5 w-5"
                     >
-                      <path
-                        d="M12 2v4m0 12v4m8.485-12.485l-2.828 2.829M4.343 19.657l2.829-2.829M2 12h4m12 0h4"
-                      />
+                      <path d="M12 2v8" />
+                      <path d="m4.93 10.93 1.41 1.41" />
+                      <path d="M2 18h2" />
+                      <path d="M20 18h2" />
+                      <path d="m19.07 10.93-1.41 1.41" />
+                      <path d="M22 22H2" />
+                      <path d="m8 6 4-4 4 4" />
+                      <path d="M16 18a4 4 0 0 0-8 0" />
                     </svg>
 
-                    <div class="flex w-4/6 lg:w-full">
+                    <div class="pl-2 flex w-4/6 lg:w-full">
                       <p class="mr-4 w-[60%] lg:w-[55%]">Sunrise:</p>
                       <p class="font-medium">
                         <span class="sunrise-text"
@@ -285,17 +357,25 @@
                   <div class="flex border-b border-gray-300 pb-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="mr-1 h-5 w-5 text-orange-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-sunset-icon lucide-sunset h-5 w-5"
                     >
-                      <path
-                        d="M12 2v4m0 12v4m8.485-12.485l-2.828 2.829M4.343 19.657l2.829-2.829M2 12h4m12 0h4"
-                      />
+                      <path d="M12 10V2" />
+                      <path d="m4.93 10.93 1.41 1.41" />
+                      <path d="M2 18h2" />
+                      <path d="M20 18h2" />
+                      <path d="m19.07 10.93-1.41 1.41" />
+                      <path d="M22 22H2" />
+                      <path d="m16 6-4 4-4-4" />
+                      <path d="M16 18a4 4 0 0 0-8 0" />
                     </svg>
 
-                    <div class="flex w-4/6 lg:w-full">
+                    <div class="pl-2 flex w-4/6 lg:w-full">
                       <p class="mr-4 w-[60%] lg:w-[55%]">Sunset:</p>
                       <p class="font-medium">
                         <span class="sunset-text"
@@ -309,17 +389,26 @@
                   <div class="flex border-b border-gray-300 pb-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      class="mr-1 h-5 w-5 text-blue-500"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-cloud-hail-icon lucide-cloud-hail h-5 w-5"
                     >
                       <path
-                        d="M12 2a10 10 0 0 0 0 20c5.523 0 10-4.477 10-10S17.523 2 12 2Z"
+                        d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"
                       />
+                      <path d="M16 14v2" />
+                      <path d="M8 14v2" />
+                      <path d="M16 20h.01" />
+                      <path d="M8 20h.01" />
+                      <path d="M12 16v2" />
+                      <path d="M12 22h.01" />
                     </svg>
 
-                    <div class="flex w-4/6 lg:w-full">
+                    <div class="pl-2 flex w-4/6 lg:w-full">
                       <p class="mr-4 w-[60%] lg:w-[55%]">Precipitation:</p>
                       <p class="font-medium">
                         <span class="precipitation-text"></span>%
