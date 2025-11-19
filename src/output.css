@@ -599,6 +599,11 @@
       margin-top: calc(var(--spacing) * 0);
     }
   }
+  .lg\:mr-0 {
+    @media (width >= 64rem) {
+      margin-right: calc(var(--spacing) * 0);
+    }
+  }
   .lg\:w-1\/4 {
     @media (width >= 64rem) {
       width: calc(1/4 * 100%);
@@ -609,9 +614,9 @@
       width: calc(3/4 * 100%);
     }
   }
-  .lg\:w-\[55\%\] {
+  .lg\:w-\[56\%\] {
     @media (width >= 64rem) {
-      width: 55%;
+      width: 56%;
     }
   }
   .lg\:w-full {

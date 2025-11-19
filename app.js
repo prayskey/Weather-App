@@ -57,8 +57,8 @@ async function fetchWeatherData(lat, lon) {
         feels_like_text.forEach(element => element.textContent = data.current.feelslike_c);
         temp_unit_elements.forEach(element => { element.textContent = "°C" });
         greetings_text.forEach(element => element.textContent = getGreetings(currentHour));
-        sunrise_text.textContent = "";
-        sunset_text.textContent = "";
+        sunrise_text.textContent = data.forecast.forecastday[0].astro.sunrise;
+        sunset_text.textContent = data.forecast.forecastday[0].astro.sunset;
         sunrise_amOrPm_text.textContent = "";
         sunset_amOrPm_text.textContent = "";
 
@@ -125,4 +125,15 @@ function getGreetings(currentHour) {
     } else {
         return "Good Evening";
     }
+}
+
+// Function to convert 12-hour format to 24-hour format
+function convertTo24Hr(time12h) {
+    const [time, modifier] = time12h.split(" ");
+    let [hours, minutes] = time.split(":");
+
+    if (hours === "12") hours = "00";
+    if (modifier === "PM") hours = parseInt(hours) + 12;
+
+    return `${hours}:${minutes}`;
 }
