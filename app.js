@@ -23,6 +23,9 @@ const sunset_amOrPm_text = document.querySelector(".sunset_amOrPm_text");
 const apiKey = "33aa39b727fa4ea9b8b172149250611"; //My API key
 let country = null; // current location of the user
 
+// Variable to hold the interval ID for updating time
+let clockInterval = null;
+
 
 window.addEventListener("load", getcurrentLocationProperties);
 
@@ -38,24 +41,7 @@ async function fetchWeatherData(lat, lon) {
 
         const data = await response.json();
         const currentHour = parseInt(data.location.localtime.split(" ")[1].split(":")[0]);
-
-
-        //function to update time using timezone of location
-        function updateTime() {
-            const timezone = data.location.tz_id;
-
-            const options = {
-                timeZone: timezone,
-                hour12: false,
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-            };
-
-            const formatter = new Intl.DateTimeFormat([], options);
-
-            return formatter.format(new Date());
-        }
+        const locationTimezone = data.location.tz_id;
 
         // Update the UI with fetched data
         temperature_text.innerHTML = `${data.current.temp_c}<span class="temp_unit">°C</span>`;
@@ -70,24 +56,41 @@ async function fetchWeatherData(lat, lon) {
         user_country_text.textContent = data.location.country;
         feels_like_text.forEach(element => element.textContent = data.current.feelslike_c);
         temp_unit_elements.forEach(element => { element.textContent = "°C" });
-        location_current_time.forEach(element => element.textContent = updateTime());
         greetings_text.forEach(element => element.textContent = getGreetings(currentHour));
         sunrise_text.textContent = "";
         sunset_text.textContent = "";
         sunrise_amOrPm_text.textContent = "";
         sunset_amOrPm_text.textContent = "";
 
-        // Update the time every second
-        setInterval(() => {
-            const time = updateTime();
-            location_current_time.forEach(el => el.textContent = time);
+
+        // Clear previous interval
+        if (clockInterval) clearInterval(clockInterval);
+
+        // Start new interval
+        clockInterval = setInterval(() => {
+            const time = updateTime(locationTimezone);
+            location_current_time.forEach(element => element.textContent = time);
         }, 1000);
-
-
 
     } catch {
         console.error("There was a problem fetching the weather data.");
     }
+}
+
+
+//function to update time using timezone of location
+function updateTime(timezone) {
+    const options = {
+        timeZone: timezone,
+        hour12: false,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+    };
+
+    const formatter = new Intl.DateTimeFormat([], options);
+
+    return formatter.format(new Date());
 }
 
 // Get the current location of the user
@@ -123,99 +126,3 @@ function getGreetings(currentHour) {
         return "Good Evening";
     }
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-function clock(timeStamp) {
-    const date = new Date(timeStamp * 1000);
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
-
-    setInterval(() => {
-        return `${hours}:${minutes}:${seconds}`;
-    }, 1000);
-
-}
-
-function amOrPm(timeStamp) {
-    const date = new Date(timeStamp * 1000);
-    let hours = date.getHours();
-    let amOrPm = hours >= 12 ? "PM" : "AM";
-
-
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    return amOrPm;
-}
-
-
-
-/*
-
-function getLocationTime() {
-
-
-    // Get the epoch time from API (only once)
-    let localTime = data.location.localtime_epoch * 1000;
-
-    // Convert to Date object
-    let currentTime = new Date(localTime);
-
-    // Function that updates the time by +1 second
-    function updateTime() {
-        currentTime.setSeconds(currentTime.getSeconds() + 1);
-
-        const hours = zeroPadding(currentTime.getHours());
-        const minutes = zeroPadding(currentTime.getMinutes());
-        const seconds = zeroPadding(currentTime.getSeconds());
-
-        return `${hours}:${minutes}:${seconds}`;
-    }
-
-    updateTime();               // Run immediately
-    setInterval(updateTime, 1000); // Update live every second
-}
-
-
-
-
-
-
-       // call this once after you get `data.location.localtime_epoch`
-function startClockFromEpoch(epochSeconds) {
-  // Clear any previous interval if you might restart the clock
-  if (window.__weatherClockInterval) clearInterval(window.__weatherClockInterval);
-
-  // Create a Date from the epoch once
-  const currentTime = new Date(epochSeconds * 1000);
-
-  function zeroPadding(unit) {
-    unit = unit.toString();
-    return unit.length < 2 ? "0" + unit : unit;
-  }
-
-  function tick() {
-    // advance the Date by one second
-    currentTime.setSeconds(currentTime.getSeconds() + 1);
-
-    const hours = zeroPadding(currentTime.getHours());
-    const minutes = zeroPadding(currentTime.getMinutes());
-    const seconds = zeroPadding(currentTime.getSeconds());
-
-    location_current_time.forEach(el => el.textContent = `${hours}:${minutes}:${seconds}`);
-  }
-
-  // render immediately and then every second
-  tick();
-  window.__weatherClockInterval = setInterval(tick, 1000);
-}
-        setInterval(() => startClockFromEpoch(data.location.localtime_epoch), 1000);
-
-
-        */
