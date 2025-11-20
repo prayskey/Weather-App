@@ -3,8 +3,8 @@ const search_btn = document.querySelector(".search-btn");
 const location_suggestions_box = document.querySelector(".location-suggestions-box");
 const location_btn = document.querySelector(".location-btn");
 const temperature_text = document.querySelector(".big-temperature-text");
-const user_city_text = document.querySelector(".user_city");
-const user_country_text = document.querySelector(".user_country");
+const user_city_text = document.querySelectorAll(".user_city");
+const user_country_text = document.querySelectorAll(".user_country");
 const location_current_time = document.querySelectorAll(".location_current_time");
 const feels_like_text = document.querySelectorAll(".feels-like-text");
 const humidity_text = document.querySelector(".humidity-text");
@@ -53,8 +53,8 @@ async function fetchWeatherData(lat, lon) {
         visibility_text.textContent = data.current.vis_km;
         precipitation_text.textContent = data.current.precip_mm;
         weather_condition_text.textContent = data.current.condition.text;
-        user_city_text.textContent = data.location.name;
-        user_country_text.textContent = data.location.country;
+        user_city_text.forEach(element => element.textContent = data.location.name);
+        user_country_text.forEach(element => element.textContent = data.location.country);
         feels_like_text.forEach(element => element.textContent = data.current.feelslike_c);
         temp_unit_elements.forEach(element => { element.textContent = "°C" });
         greetings_text.forEach(element => element.textContent = getGreetings(currentHour));
@@ -139,10 +139,88 @@ function convertTo24Hr(time12h) {
     return `${hours}:${minutes}`;
 }
 
+// Fetch location suggestions from WeatherAPI
+async function fetchLocationSuggestions(query) {
+    const response = await fetch(
+        `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${encodeURIComponent(query)}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch location suggestions");
 
-// Event listener for search input
-search_input.addEventListener("keydown", function (event) {
+    return await response.json(); // Array of location objects
+}
+
+// Render suggestions in the suggestions box
+function renderLocationSuggestions(suggestions) {
+    location_suggestions_box.innerHTML = ""; // Clear previous
+    if (suggestions.length === 0) {
+        location_suggestions_box.classList.add("hidden");
+        return;
+    }
+    suggestions.forEach(loc => {
+        const div = document.createElement("div");
+        div.className = "w-full cursor-pointer border-b-[1px] border-gray-300 bg-[#f5f5f5] px-4 py-2 text-black hover:bg-[#f0f0f0] flex";
+        div.innerHTML = `
+            <p class="location-city">${loc.name}</p>, <p class="location-country">${loc.country}</p>
+        `;
+        div.addEventListener("click", () => {
+            // Fetch weather for selected location
+            fetchWeatherData(loc.lat, loc.lon);
+            location_suggestions_box.classList.add("hidden");
+            search_input.value = `${loc.name}, ${loc.country}`;
+        });
+        location_suggestions_box.appendChild(div);
+    });
     location_suggestions_box.classList.remove("hidden");
+}
+
+// Listen for input and show suggestions
+search_input.addEventListener("input", async function () {
+    const query = this.value.trim();
+    if (query.length < 2) {
+        location_suggestions_box.classList.add("hidden");
+        return;
+    }
+    try {
+        const suggestions = await fetchLocationSuggestions(query);
+        renderLocationSuggestions(suggestions);
+    } catch (e) {
+        location_suggestions_box.classList.add("hidden");
+        console.error(e);
+    }
+});
+
+// Hide suggestions when clicking outside
+document.addEventListener("click", function (e) {
+    if (!location_suggestions_box.contains(e.target) && e.target !== search_input) {
+        location_suggestions_box.classList.add("hidden");
+    }
+});
+
+// Event listener for search button
+search_btn.addEventListener("click", async function () {
+    const query = search_input.value.trim();
+    if (query) {
+        try {
+            const suggestions = await fetchLocationSuggestions(query);
+            if (suggestions.length > 0) {
+                const loc = suggestions[0];
+                fetchWeatherData(loc.lat, loc.lon);
+                search_input.value = `${loc.name}, ${loc.country}`;
+            } else {
+                alert("Location not found.");
+            }
+        } catch (e) {
+            console.error(e);
+            alert("Failed to fetch location data.");
+        }
+        location_suggestions_box.classList.add("hidden");
+    }
 });
 
 
+
+
+
+
+// Event listener for location button
+location_btn.addEventListener("click", getcurrentLocationProperties);
