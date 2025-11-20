@@ -7,17 +7,17 @@
     <title>Weather App</title>
   </head>
   <body class="bg-[rgb(223,223,223)]">
-    <header class="flex p-3">
+    <header class="relative flex p-3">
       <!-- Mid section of the header -->
       <div
-        class="m-auto flex w-full justify-between space-x-4 px-4 md:w-2/4 md:justify-normal md:px-0"
+        class="m-auto flex w-full justify-between space-x-4 px-4 md:w-2/4 md:justify-normal md:px-0 lg:w-[45%]"
       >
         <!-- Search bar -->
         <input
           type="search"
           name="search-bar"
           id="search-bar"
-          class="search-bar w-[80%] rounded-[20px] border-2 border-solid border-gray-400 px-3 py-1.5 transition-all focus:border-gray-500 focus:outline-0"
+          class="search-bar w-[95%] rounded-[20px] border-2 border-solid border-gray-400 px-3 py-1.5 transition-all focus:border-gray-500 focus:outline-0"
           placeholder="Enter name of city to Search"
         />
 
@@ -40,6 +40,24 @@
             <circle cx="11" cy="11" r="8" />
           </svg>
         </button>
+      </div>
+
+      <!-- Container for search input suggestion -->
+      <div
+        class="location-suggestions-box hidden absolute top-[4rem]  left-1/2 z-10  w-[90%] -translate-x-1/2 md:w-2/4 lg:w-[40%]"
+      >
+        <div class="flex flex-col">
+          <div
+            class="w-full cursor-pointer border-b-[1px] border-gray-300 bg-[#f5f5f5] px-4 py-2 text-black hover:bg-[#f0f0f0]"
+          >
+            Port Harcourt, Nigeria
+          </div>
+          <div
+            class="w-full cursor-pointer border-b-[1px] border-gray-300 bg-[#f5f5f5] px-4 py-2 text-black hover:bg-[#f0f0f0]"
+          >
+            Owerri, Imo State
+          </div>
+        </div>
       </div>
     </header>
 

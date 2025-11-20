@@ -1,5 +1,6 @@
-const search_bar = document.querySelector(".search-bar");
+const search_input = document.querySelector(".search-bar");
 const search_btn = document.querySelector(".search-btn");
+const location_suggestions_box = document.querySelector(".location-suggestions-box");
 const location_btn = document.querySelector(".location-btn");
 const temperature_text = document.querySelector(".big-temperature-text");
 const user_city_text = document.querySelector(".user_city");
@@ -137,3 +138,11 @@ function convertTo24Hr(time12h) {
 
     return `${hours}:${minutes}`;
 }
+
+
+// Event listener for search input
+search_input.addEventListener("keydown", function (event) {
+    location_suggestions_box.classList.remove("hidden");
+});
+
+
