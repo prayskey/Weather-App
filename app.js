@@ -38,7 +38,7 @@ async function fetchWeatherData(lat, lon) {
 
         if (!response.ok) {
             throw new Error("Network response was not ok! \n Could not fetch forecast data.");
-        } else console.log("Forecast data fetched successfully.");
+        };
 
         const data = await response.json();
         const currentHour = parseInt(data.location.localtime.split(" ")[1].split(":")[0]);
