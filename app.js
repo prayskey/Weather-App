@@ -1,29 +1,32 @@
-const search_input = document.querySelector(".search-bar");
-const search_btn = document.querySelector(".search-btn");
-const location_suggestions_box = document.querySelector(".location-suggestions-box");
-const location_btn = document.querySelector(".location-btn");
-const temperature_text = document.querySelector(".big-temperature-text");
-const user_city_text = document.querySelectorAll(".user_city");
-const user_country_text = document.querySelectorAll(".user_country");
-const location_current_time = document.querySelectorAll(".location_current_time");
-const feels_like_text = document.querySelectorAll(".feels-like-text");
-const humidity_text = document.querySelector(".humidity-text");
-const wind_speed_text = document.querySelector(".wind-speed-text");
-const wind_direction_text = document.querySelector(".wind-direction-text");
-const visibility_text = document.querySelector(".visibility-text");
-const sunrise_text = document.querySelector(".sunrise-text");
-const sunset_text = document.querySelector(".sunset-text");
-const precipitation_text = document.querySelector(".precipitation-text");
-const weather_condition_text = document.querySelector(".weather-condition-text"); // e.g., "Sunny", "Cloudy"
-const setting_icon = document.querySelector(".lucide-settings-icon");
-const greetings_text = document.querySelectorAll(".greetings-text");
-const temp_unit_elements = document.querySelectorAll(".temp_unit");
-const sunrise_amOrPm_text = document.querySelector(".sunrise_amOrPm_text");
-const sunset_amOrPm_text = document.querySelector(".sunset_amOrPm_text");
-
 const apiKey = "33aa39b727fa4ea9b8b172149250611"; //My API key
-let country = null; // current location of the user
 
+const domUI = {
+    searchInput: $(".search-bar"),
+    searchBtn: $(".search-btn"),
+    locationSuggestionBox: $(".location-suggestions-box"),
+    locationBtn: $(".location-btn"),
+    temperatureText: $(".big-temperature-text"),
+    userCityText: $(".user_city"),
+    userCountryText: $(".user_country"),
+    currentLocationTime: $(".location_current_time"),
+    feelsLikeText: $(".feels-like-text"),
+    humidityText: $(".humidity-text"),
+    settingsIcon: $(".hamburger-settings"),
+    windSpeedText: $(".wind-speed-text"),
+    windDirectionText: $(".wind-direction-text"),
+    visibilityText: $(".visibility-text"),
+    sunriseText: $(".sunrise-text"),
+    sunsetText: $(".sunset-text"),
+    precipitationText: $(".precipitation-text"),
+    weatherConditionText: $(".weather-condition-text"), // e.g., "Sunny", "Cloudy"
+    settingsIcon: $(".lucide-settings-icon"),
+    greetingsText: $(".greetings-text"),
+    tempUnitElements: $(".temp_unit"),
+    sunrise_amOrPm_text: $(".sunrise_amOrPm_text"),
+    sunset_amOrPm_text: $(".sunset_amOrPm_text")
+}
+
+let country = null; // current location of the user
 // Variable to hold the interval ID for updating time
 let clockInterval = null;
 
@@ -34,50 +37,21 @@ window.addEventListener("load", getcurrentLocationProperties);
 async function fetchWeatherData(lat, lon) {
     try {
 
-        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=1&aqi=no&alerts=no`);
+        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=33aa39b727fa4ea9b8b172149250611&q=${lat},${lon}&days=1&aqi=no&alerts=no`);
 
         if (!response.ok) {
             throw new Error("Network response was not ok! \n Could not fetch forecast data.");
         };
 
         const data = await response.json();
-        const currentHour = parseInt(data.location.localtime.split(" ")[1].split(":")[0]);
-        const locationTimezone = data.location.tz_id;
 
-        // Update the UI with fetched data
-        temperature_text.innerHTML = `${data.current.temp_c}<span class="temp_unit">°C</span>`;
-        feels_like_text.textContent = Math.round(data.current.feelslike_c);
-        humidity_text.textContent = data.current.humidity;
-        wind_speed_text.textContent = data.current.wind_mph;
-        wind_direction_text.textContent = data.current.wind_dir;
-        visibility_text.textContent = data.current.vis_km;
-        precipitation_text.textContent = data.current.precip_mm;
-        weather_condition_text.textContent = data.current.condition.text;
-        user_city_text.forEach(element => element.textContent = data.location.name);
-        user_country_text.forEach(element => element.textContent = data.location.country);
-        feels_like_text.forEach(element => element.textContent = data.current.feelslike_c);
-        temp_unit_elements.forEach(element => { element.textContent = "°C" });
-        greetings_text.forEach(element => element.textContent = getGreetings(currentHour));
-        sunrise_text.textContent = data.forecast.forecastday[0].astro.sunrise;
-        sunset_text.textContent = data.forecast.forecastday[0].astro.sunset;
-        sunrise_amOrPm_text.textContent = "";
-        sunset_amOrPm_text.textContent = "";
+        updateDomUI(data);
 
-
-        // Clear previous interval
-        if (clockInterval) clearInterval(clockInterval);
-
-        // Start new interval
-        clockInterval = setInterval(() => {
-            const time = updateTime(locationTimezone);
-            location_current_time.forEach(element => element.textContent = time);
-        }, 1000);
 
     } catch {
         console.error("There was a problem fetching the weather data.");
     }
 }
-
 
 //function to update time using timezone of location
 function updateTime(timezone) {
@@ -151,9 +125,9 @@ async function fetchLocationSuggestions(query) {
 
 // Render suggestions in the suggestions box
 function renderLocationSuggestions(suggestions) {
-    location_suggestions_box.innerHTML = ""; // Clear previous
+    domUI.locationSuggestionBox.innerHTML = ""; // Clear previous
     if (suggestions.length === 0) {
-        location_suggestions_box.classList.add("hidden");
+        domUI.locationSuggestionBox.classList.add("hidden");
         return;
     }
     suggestions.forEach(loc => {
@@ -165,47 +139,47 @@ function renderLocationSuggestions(suggestions) {
         div.addEventListener("click", () => {
             // Fetch weather for selected location
             fetchWeatherData(loc.lat, loc.lon);
-            location_suggestions_box.classList.add("hidden");
-            search_input.value = `${loc.name}, ${loc.country}`;
+            domUI.locationSuggestionBox.classList.add("hidden");
+            domUI.searchInput.value = `${loc.name}, ${loc.country}`;
         });
-        location_suggestions_box.appendChild(div);
+        domUI.locationSuggestionBox.appendChild(div);
     });
-    location_suggestions_box.classList.remove("hidden");
+    domUI.locationSuggestionBox.classList.remove("hidden");
 }
 
 // Listen for input and show suggestions
-search_input.addEventListener("input", async function () {
+domUI.searchInput.addEventListener("input", async function () {
     const query = this.value.trim();
     if (query.length < 2) {
-        location_suggestions_box.classList.add("hidden");
+        domUI.locationSuggestionBox.classList.add("hidden");
         return;
     }
     try {
         const suggestions = await fetchLocationSuggestions(query);
         renderLocationSuggestions(suggestions);
     } catch (e) {
-        location_suggestions_box.classList.add("hidden");
+        domUI.locationSuggestionBox.classList.add("hidden");
         console.error(e);
     }
 });
 
 // Hide suggestions when clicking outside
 document.addEventListener("click", function (e) {
-    if (!location_suggestions_box.contains(e.target) && e.target !== search_input) {
-        location_suggestions_box.classList.add("hidden");
+    if (!domUI.locationSuggestionBox.contains(e.target) && e.target !== domUI.searchInput) {
+        domUI.locationSuggestionBox.classList.add("hidden");
     }
 });
 
 // Event listener for search button
-search_btn.addEventListener("click", async function () {
-    const query = search_input.value.trim();
+domUI.searchBtn.addEventListener("click", async function () {
+    const query = domUI.searchInput.value.trim();
     if (query) {
         try {
             const suggestions = await fetchLocationSuggestions(query);
             if (suggestions.length > 0) {
                 const loc = suggestions[0];
                 fetchWeatherData(loc.lat, loc.lon);
-                search_input.value = `${loc.name}, ${loc.country}`;
+                domUI.searchInput.value = `${loc.name}, ${loc.country}`;
             } else {
                 alert("Location not found.");
             }
@@ -213,14 +187,43 @@ search_btn.addEventListener("click", async function () {
             console.error(e);
             alert("Failed to fetch location data.");
         }
-        location_suggestions_box.classList.add("hidden");
+        domUI.locationSuggestionBox.classList.add("hidden");
     }
 });
 
+// Update the UI with fetched data
+function updateDomUI(fetchData) {
 
+    const currentHour = parseInt(fetchData.location.localtime.split(" ")[1].split(":")[0]);
+    const locationTimezone = fetchData.location.tz_id;
 
+    domUI.temperatureText.forEach(element => element.innerHTML = `${fetchData.current.temp_c}<span class="temp_unit">°C</span>` );
+    domUI.feelsLikeText.forEach(element => element.textContent = Math.round(fetchData.current.feelslike_c));
+    domUI.humidityText.forEach(element => element.textContent = fetchData.current.humidity);
+    domUI.windSpeedText.forEach(element => element.textContent =  fetchData.current.wind_mph);
+    domUI.windDirectionText.forEach(element => element.textContent = fetchData.current.wind_dir);
+    domUI.visibilityText.forEach(element => element.textContent =  fetchData.current.vis_km);
+    domUI.precipitationText.forEach(element => element.textContent = fetchData.current.precip_mm);
+    domUI.weatherConditionText.forEach(element => element.textContent = fetchData.current.condition.text);
+    domUI.userCityText.forEach(element => element.textContent = fetchData.location.name);
+    domUI.userCountryText.forEach(element => element.textContent = fetchData.location.country);
+    domUI.feelsLikeText.forEach(element => element.textContent = fetchData.current.feelslike_c);
+    domUI.tempUnitElements.forEach(element => { element.textContent = "°C" });
+    domUI.greetingsText.forEach(element => element.textContent = getGreetings(currentHour));
+    domUI.sunriseText.forEach(element => element.textContent = fetchData.forecast.forecastday[0].astro.sunrise);
+    domUI.sunsetText.forEach(element => element.textContent = fetchData.forecast.forecastday[0].astro.sunset);
+    domUI.sunrise_amOrPm_text.forEach(element => element.textContent = "");
+    domUI.sunset_amOrPm_text.forEach(element => element.textContent =  "");
 
+    // Clear previous interval
+    if (clockInterval) clearInterval(clockInterval);
 
+    // Start new interval
+    clockInterval = setInterval(() => {
+        const time = updateTime(locationTimezone);
+        domUI.currentLocationTime.forEach(element => element.textContent = time);
+    }, 1000);
+}
 
 // Event listener for location button
-location_btn.addEventListener("click", getcurrentLocationProperties);
+domUI.locationBtn.addEventListener("click", getcurrentLocationProperties);
