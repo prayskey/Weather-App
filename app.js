@@ -19,9 +19,11 @@ const weather_condition_text = document.querySelector(".weather-condition-text")
 const setting_icon = document.querySelector(".lucide-settings-icon");
 const greetings_text = document.querySelectorAll(".greetings-text");
 const temp_unit_elements = document.querySelectorAll(".temp_unit");
+const futureForcastContainer = document.querySelector(".future-forcast");
 const sunrise_amOrPm_text = document.querySelector(".sunrise_amOrPm_text");
 const sunset_amOrPm_text = document.querySelector(".sunset_amOrPm_text");
 
+// Class to represent hourly weather data
 class HourlyData {
     constructor(time, conditionText, temp_c, temp_f, conditionIcon) {
         this.time = time;
@@ -30,9 +32,9 @@ class HourlyData {
         this.temp_f = temp_f;
         this.conditionIcon = conditionIcon;
     }
-    createCard() {
+    createHourlyForcastCard() {
         const card = document.createElement("div");
-        card.className = "hour-card flex h-40 w-40 shrink-0 flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400 md:h-50 md:w-50";
+        card.className = "hour-card flex h-40 w-40 shrink-0 flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400 h-50 w-50";
         card.innerHTML = `
             <p class="hour-time text-sm mb-2">${this.time}</p>
             <img src="${this.conditionIcon}" alt="${this.conditionText}" class="hour-icon mb-2" />
@@ -43,6 +45,51 @@ class HourlyData {
     }
 
 }
+
+// Class to represent daily weather data
+class DailyData {
+    static dayCounter = 0;
+    constructor(date, conditionText, maxTempC, minTempC, conditionIcon) {
+        this.date = date;
+        this.conditionText = conditionText;
+        this.maxTempC = maxTempC;
+        this.minTempC = minTempC;
+        this.conditionIcon = conditionIcon;
+    }
+    createDailyForcastCard() {
+        const card = document.createElement("div");
+        card.className = "day-card flex h-40 shrink-0 flex-col text-[20px] w-full items-center space-y-2 rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400";
+        card.innerHTML = `
+            <div class="w-full px-4 flex space-x-5 justify-center">
+                <p class="day-date text-center text-sm mb-2">${this.day()}</p>
+                <p class="day-date text-center text-sm mb-2">${this.date}</p>
+            </div>           
+            <div class="flex w-full px-4 justify-between items-center">              
+               <div>
+                <p class="day-temp text-lg font-semibold">Max: ${this.maxTempC}°C</p>
+                <p class="day-temp text-lg font-semibold">Min: ${this.minTempC}°C</p>
+                </div>
+                <img src="${this.conditionIcon}" alt="${this.conditionText}" class="day-icon mb-2" />
+                <p class="day-condition text-center text-sm mb-2">${this.conditionText}</p> 
+            </div>        
+        `;
+        return card;
+    }
+
+    // Get day of week from date
+    day() {
+        // Increment dayCounter and calculate day name
+        DailyData.dayCounter++;
+        // Get day name
+        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        if (DailyData.dayCounter === 1) return "Today";
+        else return daysOfWeek[new Date(this.date).getDay()];        
+    }
+    static resetDayCounter() {
+        DailyData.dayCounter = 0;
+    }
+    
+};
 
 const apiKey = "33aa39b727fa4ea9b8b172149250611"; //My API key
 let country = null; // current location of the user
@@ -57,7 +104,8 @@ window.addEventListener("load", getcurrentLocationProperties);
 async function fetchWeatherData(lat, lon) {
     try {
 
-        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=1&aqi=no&alerts=no`);
+        const apiURL = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=7&aqi=no&alerts=no`;
+        const response = await fetch(apiURL);
 
         if (!response.ok) {
             throw new Error("Network response was not ok! \n Could not fetch forecast data.");
@@ -72,7 +120,10 @@ async function fetchWeatherData(lat, lon) {
         hourlyForcastContainer.innerHTML = "";
 
         // Update hourly forecast for the current day
-        updateHourlyForecast(0, lat, lon);
+        fetchHourlyForcast(0, lat, lon);
+
+        // Fetch daily forcast data
+        fetchDailyforcast(data.forecast.forecastday);
 
     } catch {
         console.error("There was a problem fetching the weather data.");
@@ -147,7 +198,9 @@ async function fetchLocationSuggestions(query) {
     );
     if (!response.ok) throw new Error("Failed to fetch location suggestions");
 
-    return await response.json(); // Array of location objects
+    const suggestions = await response.json(); // Array of location objects
+
+    return suggestions;
 }
 
 // Render suggestions in the suggestions box
@@ -257,7 +310,7 @@ function updateWeatherUI(data) {
 location_btn.forEach(e => e.addEventListener("click", getcurrentLocationProperties));
 
 // Update future day hourly forecast
-async function updateHourlyForecast(dayIndex, lat, lon) {
+async function fetchHourlyForcast(dayIndex, lat, lon) {
     try {
         const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=${dayIndex + 1}&aqi=no&alerts=no`);
         if (!response.ok) {
@@ -270,13 +323,25 @@ async function updateHourlyForecast(dayIndex, lat, lon) {
         hourData.forEach(hour => {
             const hourCard = new HourlyData(hour.time.split(" ")[1], hour.condition.text, hour.temp_c, hour.temp_f, hour.condition.icon);
 
-            hourlyForcastContainer.appendChild(hourCard.createCard());
-
-            console.log([...hourlyForcastContainer.children]);
+            hourlyForcastContainer.appendChild(hourCard.createHourlyForcastCard());
         })
 
 
     } catch {
         console.error("There was a problem fetching the hourly forecast data.");
     }
+}
+
+// Fetch daily forecast data
+function fetchDailyforcast(forecastdays) {
+    // Clear previous cards before appending new ones
+    futureForcastContainer.innerHTML = "";
+
+    forecastdays.forEach(day => {
+        const card = new DailyData(day.date, day.day.condition.text, day.day.maxtemp_c, day.day.mintemp_c, day.day.condition.icon);
+
+        // Append the created card to the future forecast container
+        futureForcastContainer.appendChild(card.createDailyForcastCard());
+    });
+    DailyData.resetDayCounter();
 }
