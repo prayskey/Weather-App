@@ -171,7 +171,10 @@ function updateTime(timezone) {
 
 // Get the current location of the user
 function getcurrentLocationProperties() {
+    // show loader
+    showLoader();
 
+    alert("This may take a while, as the browser uses mobile GPS to get your current location.");
     function successcallBack(position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
