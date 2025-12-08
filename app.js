@@ -98,7 +98,26 @@ let country = null; // current location of the user
 let clockInterval = null;
 
 
-window.addEventListener("load", getcurrentLocationProperties);
+window.addEventListener("load", getUserLocationWithIP);
+
+setTimeout(() => {alert("Click on the location icon to get weather updates for your current location!")}, 4000);
+
+// Fetch user location using IP geolocation API
+async function getUserLocationWithIP() {
+    try {
+        const apiURL = `https://api.weatherapi.com/v1/forecast.json?key=KEY&q=auto:ip&days=7&aqi=no&alerts=no`.replace("KEY", apiKey);
+        const response = await fetch(apiURL);
+        if (!response.ok) {
+            throw new Error("Network response was not ok! \n Could not fetch IP location data.");
+        }
+        const data = await response.json();
+
+        // Fetch weather data for the obtained location
+        fetchWeatherData(data.location.lat, data.location.lon);
+    } catch {
+        console.error("There was a problem fetching the IP location data.");
+    }
+}
 
 // Fetch weather data from the API
 async function fetchWeatherData(lat, lon) {
@@ -130,7 +149,7 @@ async function fetchWeatherData(lat, lon) {
         console.error("There was a problem fetching the weather data.");
     }
     finally {
-        hideLoader();
+        hideLoader();                               
     }
 }
 

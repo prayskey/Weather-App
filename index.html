@@ -7,6 +7,17 @@
     <title>Weather App</title>
   </head>
   <body class="bg-[rgb(223,223,223)]">
+    <!-- Document loader -->
+    <section
+      id="loader"
+      class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/30 backdrop-blur-sm"
+    >
+      <div
+        class="h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"
+      ></div>
+    </section>
+
+    <!-- Header section -->
     <header class="relative flex p-3">
       <!-- Mid section of the header -->
       <div
@@ -63,7 +74,7 @@
               <!-- Location picked by user or current location user resides -->
               <div class="flex space-x-3">
                 <!-- Location icon -->
-                <div class="location-btn">
+                <div class="location-btn box-shadow-gray-400 padding-2 hover:cursor-pointer active:shadow">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -375,7 +386,7 @@
           <!-- Location picked by user or current location user resides-->
           <div class="hidden space-x-3 md:flex">
             <!-- Location icon -->
-            <div class="location-btn">
+            <div class="location-btn box-shadow-gray-400 padding-2 hover:cursor-pointer active:shadow">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -452,16 +463,6 @@
         </div>
       </div>
     </main>
-
-    <!-- Document loader -->
-    <div
-      id="loader"
-      class="fixed inset-0 z-[9999]  hidden items-center justify-center bg-black/30 backdrop-blur-sm"
-    >
-      <div
-        class="h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"
-      ></div>
-    </div>
 
     <footer></footer>
 

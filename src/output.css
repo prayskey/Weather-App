@@ -263,6 +263,9 @@
   .ml-2 {
     margin-left: calc(var(--spacing) * 2);
   }
+  .box-border {
+    box-sizing: border-box;
+  }
   .flex {
     display: flex;
   }
