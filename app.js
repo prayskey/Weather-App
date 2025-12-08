@@ -102,6 +102,7 @@ window.addEventListener("load", getcurrentLocationProperties);
 
 // Fetch weather data from the API
 async function fetchWeatherData(lat, lon) {
+    showLoader();
     try {
 
         const apiURL = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=7&aqi=no&alerts=no`;
@@ -127,6 +128,9 @@ async function fetchWeatherData(lat, lon) {
 
     } catch {
         console.error("There was a problem fetching the weather data.");
+    }
+    finally {
+        hideLoader();
     }
 }
 
@@ -344,4 +348,14 @@ function fetchDailyforcast(forecastdays) {
         futureForcastContainer.appendChild(card.createDailyForcastCard());
     });
     DailyData.resetDayCounter();
+};
+
+function showLoader() {
+    document.getElementById("loader").classList.remove("hidden");
+    document.getElementById("loader").classList.add("flex");
+
+}
+
+function hideLoader() {
+    document.getElementById("loader").classList.add("hidden");
 }
