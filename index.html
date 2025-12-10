@@ -10,7 +10,7 @@
     <!-- Document loader -->
     <section
       id="loader"
-      class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/30 backdrop-blur-sm"
+      class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30 backdrop-blur-sm"
     >
       <div
         class="h-12 w-12 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600"
@@ -21,14 +21,14 @@
     <header class="relative flex p-3">
       <!-- Mid section of the header -->
       <div
-        class="m-auto flex w-full justify-between space-x-4 px-4 md:w-2/4 md:justify-normal md:px-0 lg:w-[45%]"
+        class="m-auto flex w-full justify-between px-4 md:w-2/4 md:px-0 lg:w-[45%]"
       >
         <!-- Search bar -->
         <input
           type="search"
           name="search-bar"
           id="search-bar"
-          class="search-bar w-[95%] rounded-[20px] border-2 border-solid border-gray-400 px-3 py-1.5 transition-all focus:border-gray-500 focus:outline-0"
+          class="search-bar w-[90%] rounded-[20px] border border-solid border-gray-400 px-3 py-1.5 transition-all focus:border-gray-500 focus:outline-0"
           placeholder="Enter name of city to Search"
         />
 
@@ -61,8 +61,8 @@
 
     <hr class="text-gray-400" />
 
-    <main class="flex items-center justify-center">
-      <div class="flex w-full flex-col text-gray-800 md:m-10 md:flex-row">
+    <main class="main-body-document animate-fade-in hidden items-center justify-center">
+      <div class="flex w-full flex-col text-gray-800 md:p-10 md:flex-row">
         <!-- Left section of main container -->
         <div
           class="space-y-14 bg-[rgb(230,230,230)] p-8 md:w-2/3 md:rounded-l-3xl"
@@ -457,7 +457,7 @@
 
           <!-- Future day weather forcast -->
 
-          <div class="future-forcast flex flex-col space-y-3 pt-7">
+          <div class="future-forcast flex flex-col space-y-4 pt-7">
             <!-- Day cards will be appended here dynamically using JS -->
           </div>
         </div>

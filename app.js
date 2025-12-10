@@ -1,3 +1,4 @@
+const mainBodyDocument = document.querySelector(".main-body-document");
 const search_input = document.querySelector(".search-bar");
 const search_btn = document.querySelector(".search-btn");
 const location_suggestions_box = document.querySelector(".location-suggestions-box");
@@ -32,6 +33,8 @@ class HourlyData {
         this.temp_f = temp_f;
         this.conditionIcon = conditionIcon;
     }
+
+    // Method to create an hourly forecast card element
     createHourlyForcastCard() {
         const card = document.createElement("div");
         card.className = "hour-card flex h-40 w-40 shrink-0 flex-col items-center justify-between rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400 h-50 w-50";
@@ -58,7 +61,7 @@ class DailyData {
     }
     createDailyForcastCard() {
         const card = document.createElement("div");
-        card.className = "day-card flex h-40 shrink-0 flex-col text-[20px] w-full items-center space-y-2 rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400";
+        card.className = "day-card flex h-36 shrink-0 flex-col text-[20px] w-full items-center space-y-2 rounded-2xl p-3 font-bold shadow-2xl shadow-gray-400";
         card.innerHTML = `
             <div class="w-full px-4 flex space-x-5 justify-center">
                 <p class="day-date text-center text-sm mb-2">${this.day()}</p>
@@ -66,8 +69,8 @@ class DailyData {
             </div>           
             <div class="flex w-full px-4 justify-between items-center">              
                <div>
-                <p class="day-temp text-lg font-semibold">Max: ${this.maxTempC}°C</p>
-                <p class="day-temp text-lg font-semibold">Min: ${this.minTempC}°C</p>
+                <p class="day-temp text-sm md:text-lg font-semibold">Max: ${this.maxTempC}°C</p>
+                <p class="day-temp text-sm md:text-lg font-semibold">Min: ${this.minTempC}°C</p>
                 </div>
                 <img src="${this.conditionIcon}" alt="${this.conditionText}" class="day-icon mb-2" />
                 <p class="day-condition text-center text-sm mb-2">${this.conditionText}</p> 
@@ -83,12 +86,12 @@ class DailyData {
         // Get day name
         const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         if (DailyData.dayCounter === 1) return "Today";
-        else return daysOfWeek[new Date(this.date).getDay()];        
+        else return daysOfWeek[new Date(this.date).getDay()];
     }
     static resetDayCounter() {
         DailyData.dayCounter = 0;
     }
-    
+
 };
 
 const apiKey = "33aa39b727fa4ea9b8b172149250611"; //My API key
@@ -98,9 +101,10 @@ let country = null; // current location of the user
 let clockInterval = null;
 
 
-window.addEventListener("load", getUserLocationWithIP);
-
-setTimeout(() => {alert("Click on the location icon to get weather updates for your current location!")}, 4000);
+window.addEventListener("load", () => {
+    getUserLocationWithIP();
+    setTimeout(() => { alert("Click on the location icon to get weather updates for your current location!") }, 4000);
+});
 
 // Fetch user location using IP geolocation API
 async function getUserLocationWithIP() {
@@ -121,7 +125,7 @@ async function getUserLocationWithIP() {
 
 // Fetch weather data from the API
 async function fetchWeatherData(lat, lon) {
-    showLoader();
+    hideLoader();
     try {
 
         const apiURL = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat},${lon}&days=7&aqi=no&alerts=no`;
@@ -149,10 +153,9 @@ async function fetchWeatherData(lat, lon) {
         console.error("There was a problem fetching the weather data.");
     }
     finally {
-        hideLoader();                               
+        hideLoader();
     }
 }
-
 
 //function to update time using timezone of location
 function updateTime(timezone) {
@@ -342,17 +345,13 @@ async function fetchHourlyForcast(dayIndex, lat, lon) {
         if (!response.ok) {
             throw new Error("Network response was not ok! \n Could not fetch forecast data.");
         }
-
         const data = await response.json();
         const hourData = data.forecast.forecastday[dayIndex].hour;
 
         hourData.forEach(hour => {
             const hourCard = new HourlyData(hour.time.split(" ")[1], hour.condition.text, hour.temp_c, hour.temp_f, hour.condition.icon);
-
             hourlyForcastContainer.appendChild(hourCard.createHourlyForcastCard());
         })
-
-
     } catch {
         console.error("There was a problem fetching the hourly forecast data.");
     }
@@ -380,4 +379,8 @@ function showLoader() {
 
 function hideLoader() {
     document.getElementById("loader").classList.add("hidden");
+    if (!mainBodyDocument.classList.contains("flex")) {
+        mainBodyDocument.classList.remove("hidden");
+        mainBodyDocument.classList.add("flex");
+    }
 }
